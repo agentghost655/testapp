@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Mode App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Driving Mode App</h1>
+        <div class="settings">
+            <label for="customMessage">Custom Message:</label>
+            <input type="text" id="customMessage" placeholder="Enter custom message">
+            <br>
+            <label> write timings in 24 hours format (e.g: 13 for 1 pm) </label>
+            <input type="text" id="startHours" placeholder="Start Hours">
+            <span>:</span>
+            <input type="text" id="startMinutes" placeholder="Start Minutes">
+            <input type="text" id="endHours" placeholder="End Hours">
+            <span>:</span>
+            <input type="text" id="endMinutes" placeholder="End Minutes">
+            <div class="checkbox">
+                <input type="checkbox" id="isDriving" checked>
+                <label for="isDriving">Driving Mode</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="isCustomMode">
+                <label for="isCustomMode">Custom Mode</label>
+            </div>
+            <button onclick="updateSettings()">Update Settings</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
