@@ -6,6 +6,7 @@ const startTimeInput = document.getElementById('startTime');
 const endTimeInput = document.getElementById('endTime');
 const customMessageInput = document.getElementById('customMessage');
 let interval;
+let speed = 0;
 
 // Initialize driving mode by default
 simulateDrivingMode();
@@ -32,10 +33,11 @@ customSwitch.addEventListener('change', function() {
 });
 
 function simulateDrivingMode() {
-  let speed = 0;
   interval = setInterval(function() {
-    speed += Math.floor(Math.random() * 30);
-    speedDisplay.textContent = `Speed: ${speed} km/h`;
+    // Simulate random fluctuations in speed
+    const delta = Math.random() * 6 - 3;
+    speed = Math.max(0, speed + delta);
+    speedDisplay.textContent = `Speed: ${speed.toFixed(1)} km/h`;
 
     if (speed > 20) {
       // Silencing calls when speed exceeds 20 km/h
@@ -46,6 +48,7 @@ function simulateDrivingMode() {
 
 function disableDrivingMode() {
   clearInterval(interval); // Stop the interval
+  speed = 0;
   speedDisplay.textContent = "Speed: 0 km/h";
 }
 

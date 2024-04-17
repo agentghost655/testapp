@@ -15,6 +15,24 @@ body {
   }
   
   .switch {
+    margin-bottom: 10px;
+  }
+  
+  #customSettings input[type="time"],
+  #customSettings input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  #customSettings label {
+    display: block;
+  }
+  
+  #speedDisplay {
+    margin-top: 20px;
+  }
+  
+  .slider {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -22,13 +40,13 @@ body {
     margin-bottom: 10px;
   }
   
-  .switch input {
+  .slider input {
     opacity: 0;
     width: 0;
     height: 0;
   }
   
-  .slider {
+  .slider .round {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -41,7 +59,7 @@ body {
     border-radius: 34px;
   }
   
-  .slider:before {
+  .slider .round:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -54,21 +72,21 @@ body {
     border-radius: 50%;
   }
   
-  input:checked + .slider {
+  input:checked + .slider .round {
     background: linear-gradient(to bottom right, #FF5722, #FFEB3B);
   }
   
-  input:checked + .slider:before {
+  input:checked + .slider .round:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
   
-  .slider.round {
+  .slider .round {
     border-radius: 34px;
   }
   
-  .slider.round:before {
+  .slider .round:before {
     border-radius: 50%;
   }
   
