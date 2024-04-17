@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driving Mode App</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driving Mode</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Driving Mode App</h1>
-        <div class="settings">
-            <label for="customMessage">Custom Message:</label>
-            <input type="text" id="customMessage" placeholder="Enter custom message">
-            <br>
-            <label> write timings in 24 hours format (e.g: 13 for 1 pm) </label>
-            <input type="text" id="startHours" placeholder="Start Hours">
-            <span>:</span>
-            <input type="text" id="startMinutes" placeholder="Start Minutes">
-            <input type="text" id="endHours" placeholder="End Hours">
-            <span>:</span>
-            <input type="text" id="endMinutes" placeholder="End Minutes">
-            <div class="checkbox">
-                <input type="checkbox" id="isDriving" checked>
-                <label for="isDriving">Driving Mode</label>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox" id="isCustomMode">
-                <label for="isCustomMode">Custom Mode</label>
-            </div>
-            <button onclick="updateSettings()">Update Settings</button>
-        </div>
-    </div>
-    <script src="scripts.js"></script>
+  <h1>Driving Mode</h1>
+  <label class="switch">
+    <input type="checkbox" id="drivingSwitch" checked>
+    <span class="slider round"></span>
+  </label>
+  <label class="switch">
+    <input type="checkbox" id="customSwitch">
+    <span class="slider round"></span>
+  </label>
+  <div id="customSettings" style="display:none;">
+    <label for="startTime">Start Time:</label>
+    <input type="time" id="startTime" value="02:00">
+    <label for="endTime">End Time:</label>
+    <input type="time" id="endTime" value="09:00">
+    <br>
+    <label for="customMessage">Custom Message:</label>
+    <input type="text" id="customMessage" placeholder="Enter custom message">
+  </div>
+  <p id="speedDisplay">Speed: 0 km/h</p>
+  <script src="scripts.js"></script>
 </body>
 </html>
