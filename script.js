@@ -5,53 +5,55 @@ const customSettings = document.getElementById('customSettings');
 const startTimeInput = document.getElementById('startTime');
 const endTimeInput = document.getElementById('endTime');
 const customMessageInput = document.getElementById('customMessage');
-let interval;
+const updateCustomBtn = document.getElementById('updateCustom');
+let drivingInterval;
 let speed = 0;
 
-// Initialize driving mode by default
-simulateDrivingMode();
-
-drivingSwitch.addEventListener('change', function() {
-  if (this.checked && !customSwitch.checked) {
-    // Simulate driving mode if both switches are on
-    simulateDrivingMode();
-  } else {
-    // Disable driving mode if custom mode is turned on
-    disableDrivingMode();
-  }
-});
+// Initialize custom mode to be off
+customSwitch.checked = false;
 
 customSwitch.addEventListener('change', function() {
   if (this.checked) {
     // Enable custom mode
-    setCustomMode();
+    customSettings.style.display = 'block';
   } else {
     // Disable custom mode
     customSettings.style.display = 'none';
-    clearInterval(interval); // Stop the interval if custom mode is turned off
+    clearInterval(drivingInterval); // Stop the interval if custom mode is turned off
   }
 });
 
-function simulateDrivingMode() {
-  interval = setInterval(function() {
-    // Simulate random fluctuations in speed
-    const delta = Math.random() * 6 - 3;
-    speed = Math.max(0, speed + delta);
-    speedDisplay.textContent = `Speed: ${speed.toFixed(1)} km/h`;
+updateCustomBtn.addEventListener('click', function() {
+  // Activate custom mode when update button is clicked
+  activateCustomMode();
+});
 
-    if (speed > 20) {
-      // Silencing calls when speed exceeds 20 km/h
-      alert("Incoming calls silenced. You are driving.");
-    }
-  }, 1000);
-}
+function activateCustomMode() {
+  const startTime = new Date();
+  const endTime = new Date();
 
-function disableDrivingMode() {
-  clearInterval(interval); // Stop the interval
-  speed = 0;
-  speedDisplay.textContent = "Speed: 0 km/h";
-}
+  // Set start and end times
+  startTime.setHours(parseInt(startTimeInput.value.substring(0, 2)));
+  startTime.setMinutes(parseInt(startTimeInput.value.substring(3, 5)));
+  endTime.setHours(parseInt(endTimeInput.value.substring(0, 2)));
+  endTime.setMinutes(parseInt(endTimeInput.value.substring(3, 5)));
 
-function setCustomMode() {
-  customSettings.style.display = 'block';
+  // Check if start time is before end time
+  if (startTime < endTime) {
+    // Start custom mode
+    customSettings.style.display = 'none';
+
+    // Check custom mode settings periodically
+    drivingInterval = setInterval(function() {
+      const currentTime = new Date();
+
+      // Check if current time is within the specified range
+      if (currentTime >= startTime && currentTime <= endTime) {
+        // Silence incoming calls and display custom message
+        alert("Incoming calls silenced. " + customMessageInput.value);
+      }
+    }, 1000);
+  } else {
+    alert("End time must be after start time.");
+  }
 }
