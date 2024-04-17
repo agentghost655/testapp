@@ -54,22 +54,4 @@ function disableDrivingMode() {
 
 function setCustomMode() {
   customSettings.style.display = 'block';
-
-  // Prompt user to set start and end times
-  const startTime = prompt("Enter start time (HH:MM):", "02:00");
-  const endTime = prompt("Enter end time (HH:MM):", "09:00");
-
-  // Prompt user to enter custom message
-  const customMessage = prompt("Enter custom message for callers:", "I am currently busy. Please call after 9 am.");
-
-  if (startTime && endTime && customMessage) {
-    // Set input values
-    startTimeInput.value = startTime;
-    endTimeInput.value = endTime;
-    customMessageInput.value = customMessage;
-  } else {
-    // If user cancels the prompts or doesn't enter values, turn off custom mode
-    customSwitch.checked = false;
-    customSettings.style.display = 'none';
-  }
 }

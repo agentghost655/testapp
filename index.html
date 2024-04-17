@@ -4,28 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Driving Mode</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Driving Mode</h1>
-  <label class="switch">
-    <input type="checkbox" id="drivingSwitch" checked>
-    <span class="slider round"></span>
-  </label>
-  <label class="switch">
-    <input type="checkbox" id="customSwitch">
-    <span class="slider round"></span>
-  </label>
-  <div id="customSettings" style="display:none;">
-    <label for="startTime">Start Time:</label>
-    <input type="time" id="startTime" value="02:00">
-    <label for="endTime">End Time:</label>
-    <input type="time" id="endTime" value="09:00">
-    <br>
-    <label for="customMessage">Custom Message:</label>
-    <input type="text" id="customMessage" placeholder="Enter custom message">
+  <div class="container">
+    <h1>Driving Mode</h1>
+    <div class="switches">
+      <label class="switch">
+        <span>Driving Mode</span>
+        <input type="checkbox" id="drivingSwitch" checked>
+        <span class="slider round"></span>
+      </label>
+      <label class="switch">
+        <span>Custom Mode</span>
+        <input type="checkbox" id="customSwitch">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div id="customSettings" style="display:none;">
+      <label for="startTime">Start Time:</label>
+      <input type="time" id="startTime" value="02:00">
+      <label for="endTime">End Time:</label>
+      <input type="time" id="endTime" value="09:00">
+      <br>
+      <label for="customMessage">Custom Message:</label>
+      <input type="text" id="customMessage" placeholder="Enter custom message">
+    </div>
+    <p id="speedDisplay">Speed: 0 km/h</p>
   </div>
-  <p id="speedDisplay">Speed: 0 km/h</p>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="script.js"></script>
 </body>
 </html>
