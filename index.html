@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Driving Mode</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #014098, #582c4f, #c7a868, white);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #speed {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Driving Mode</h1>
-    <div class="switches">
-      <label class="switch">
-        <span>Driving Mode</span>
-        <input type="checkbox" id="drivingSwitch" checked>
-        <span class="slider round"></span>
-      </label>
-      <label class="switch">
-        <span>Custom Mode</span>
-        <input type="checkbox" id="customSwitch">
-        <span class="slider round"></span>
-      </label>
+    <div class="container">
+        <div id="speed">Speed: - km/h</div>
     </div>
-    <div id="customSettings" style="display:none;">
-      <label for="startTime">Start Time:</label>
-      <input type="time" id="startTime" value="02:00">
-      <label for="endTime">End Time:</label>
-      <input type="time" id="endTime" value="09:00">
-      <br>
-      <label for="customMessage">Custom Message:</label>
-      <input type="text" id="customMessage" placeholder="Enter custom message">
-      <br>
-      <button id="updateCustom">Update</button>
-    </div>
-    <p id="speedDisplay">Speed: 0 km/h</p>
-  </div>
-  <script src="script.js"></script>
+
+    <script>
+        function updateSpeed(speed) {
+            document.getElementById('speed').textContent = `Speed: ${speed} km/h`;
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(function(position) {
+                    // Calculate speed in km/h (1 m/s ≈ 3.6 km/h)
+                    const speedKMH = (position.coords.speed || 0) * 3.6;
+                    updateSpeed(speedKMH.toFixed(2));
+                }, function(error) {
+                    console.error('Error getting geolocation:', error.message);
+                });
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+        }
+
+        // Start tracking location
+        getLocation();
+    </script>
 </body>
 </html>
